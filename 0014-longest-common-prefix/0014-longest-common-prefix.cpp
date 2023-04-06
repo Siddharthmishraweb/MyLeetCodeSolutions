@@ -24,7 +24,7 @@ public:
                 cnt++;
             }else break;
         }
-        return cnt == 0?"": str.substr(0,cnt);
+        return cnt == 0 ? "" : str.substr(0,cnt);
 
     }
 };
