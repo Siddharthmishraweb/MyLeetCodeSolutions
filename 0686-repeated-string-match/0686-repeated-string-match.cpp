@@ -9,7 +9,8 @@ public:
         }
         if(a.find(b) != -1) return cnt;
         a += temp;
-        if(a.find(b) != -1) return ++cnt;
+        cnt++;
+        if(a.find(b) != -1) return cnt;
         return -1;
     }
 };
