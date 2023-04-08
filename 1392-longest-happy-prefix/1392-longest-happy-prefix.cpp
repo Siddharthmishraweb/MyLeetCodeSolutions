@@ -4,7 +4,6 @@ public:
         int lps[s.size()];
         lps[0] = 0;
         int len = 0;
-        for(int i = 0 ; i < s.size() ;i++) lps[i]=0;
         for(int i = 1 ; i < s.size() ; i++){
             if(s[len] == s[i]){
                 len++;
@@ -12,12 +11,10 @@ public:
             }else{
                if(len == 0) lps[i] = 0;
                else{
-                   len =lps[len-1];
+                   len = lps[len-1];
                    i--;
-               } 
-                    
+               }
             }
-            
         }
         for(int i = 0 ; i < s.size() ; i++){
             cout<<lps[i]<<" ";
