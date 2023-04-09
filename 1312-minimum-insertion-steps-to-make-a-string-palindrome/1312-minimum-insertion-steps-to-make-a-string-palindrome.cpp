@@ -1,6 +1,6 @@
 class Solution {
 public:
-int lcs(string s1,string s2, int m, int n){
+    int lcs(string s1,string s2, int m, int n){
         int dp[m+1][n+1];
         for(int i = 0 ; i < m+1 ; i++){
             dp[i][0] = 0;
@@ -17,13 +17,13 @@ int lcs(string s1,string s2, int m, int n){
         }
         return dp[m][n];
     }
-int lps(string s1){
-   string s2 = s1;
-   reverse(s2.begin(), s2.end());
-   int m = s1.size();
-   int n = s2.size();
-   return lcs(s1, s2, m, n);
-}
+    int lps(string s1){
+       string s2 = s1;
+       reverse(s2.begin(), s2.end());
+       int m = s1.size();
+       int n = s2.size();
+       return lcs(s1, s2, m, n);
+    }
 
     int minInsertions(string s) {
         return s.size() - lps(s);
