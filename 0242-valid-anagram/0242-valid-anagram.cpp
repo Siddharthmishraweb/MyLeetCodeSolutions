@@ -1,13 +1,15 @@
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        unordered_map<char,int> map1,map2;
-        for(int i = 0 ; i < s.size() ; i++){
-            map1[s[i]]++;
+        vector<int> a, b;
+        for(int i = 0 ; i < s.size() ; i++) a.push_back(s[i]);
+        for(int i = 0 ; i < t.size() ; i++) b.push_back(t[i]);
+        if(a.size() != b.size()) return false;
+        sort(a.begin(), a.end());
+        sort(b.begin(), b.end());
+        for(int i = 0 ; i < a.size(); i++){
+            if(a[i] != b[i]) return false;
         }
-        for(int i = 0 ; i < t.size() ; i++){
-            map2[t[i]]++;
-        }
-        return map1 == map2;
+        return true;
     }
 };
