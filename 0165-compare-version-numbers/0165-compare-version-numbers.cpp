@@ -31,21 +31,6 @@ public:
         while(pendingNodes1.size() > pendingNodes2.size()){
             pendingNodes2.push(0);
         }
-
-
-
-        // while(pendingNodes1.size() != 0){
-        //     cout<<pendingNodes1.front()<<endl;
-        //     pendingNodes1.pop();
-        // }
-        // cout<<"2nd"<<endl;
-        // while(pendingNodes2.size() != 0){
-        //     cout<<pendingNodes2.front()<<endl;
-        //     pendingNodes2.pop();
-        // }
-
-
-
         ll size = pendingNodes2.size();
         for(int i = 0 ; i < size ; i++){
             ll first = pendingNodes1.front();
@@ -56,20 +41,5 @@ public:
             if(first < second) return -1;
         }
         return 0;
-        // while(version1.length() < version2.length()){
-        //     version1.push_back('0');
-        // }
-        // while(version1.length() > version2.length()){
-        //     version2.push_back('0');
-        // }
-        // cout<<version1<<" , "<<version2<<endl;
-        // for(int i = 0 ; i < version1.length() ; i++){
-        //     if((int)(version1[i] - '0') <  (int)(version2[i] - '0')){
-        //         return -1;
-        //     }else if((int)(version1[i] - '0') >  (int)(version2[i] - '0')){
-        //         return 1;
-        //     }else return 0;
-        // }
-        // return 0;
     }
 };
