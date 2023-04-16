@@ -16,12 +16,10 @@ public:
         if(root == NULL) return;
         helper(root -> left);
         ans.push_back(root -> val);
-        cout<<root -> val<<" , ";
         helper(root -> right);
     }
     vector<int> inorderTraversal(TreeNode* root) {
         helper(root);
-        vector<int> aa;
         return ans;
     }
 };
