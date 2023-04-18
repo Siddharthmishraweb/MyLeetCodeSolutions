@@ -12,20 +12,28 @@
 class Solution {
 public:
     vector<int> preorderTraversal(TreeNode* root) {
-        vector<int> preOrder;
-        stack<TreeNode*> stack;
-        TreeNode* node = root;
-        stack.push(root);
-        if(root == NULL) return preOrder;
-        while(!stack.empty()){
-            TreeNode* top = stack.top();
-            stack.pop();
-            preOrder.push_back(top -> val);
-            if(top -> right != NULL)
-                stack.push(top -> right);
-            if(top -> left != NULL)
-                stack.push(top -> left);
+        // Preorder traversal using morris traversal
+        vector<int> preorder;
+        TreeNode* curr = root;
+        while(curr != NULL){
+            if(curr -> left == NULL){
+                preorder.push_back(curr -> val);
+                curr = curr -> right;
+            }else{
+                TreeNode* prev = curr -> left;
+                while(prev -> right != NULL && prev -> right != curr){
+                    prev =prev -> right;
+                }
+                if(prev -> right == NULL){
+                    prev -> right = curr;
+                    preorder.push_back(curr-> val);
+                    curr = curr -> left;
+                }else{
+                    prev -> right = NULL;
+                    curr = curr -> right;
+                }
+            }
         }
-        return preOrder;
+        return preorder;
     }
 };
