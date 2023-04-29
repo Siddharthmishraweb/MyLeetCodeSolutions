@@ -106,10 +106,7 @@ class Solution {
             Node* front = pendingNodes.front().first;
             int horizontalDistance = pendingNodes.front().second;
             pendingNodes.pop();
-            
-            //if(nodeFreq.find(horizontalDistance) == nodeFreq.end()){
-                nodeFreq[horizontalDistance] = front->data;
-           // }
+            nodeFreq[horizontalDistance] = front->data;
             if(front -> left){
                 pendingNodes.push({front -> left, horizontalDistance - 1});
             }
@@ -117,7 +114,6 @@ class Solution {
                 pendingNodes.push({front -> right, horizontalDistance + 1});
             }
         }
-        //sort(nodeFreq.begin(), nodeFreq.end());
         for(auto x : nodeFreq){
             ans.pb(x.second);
         }
