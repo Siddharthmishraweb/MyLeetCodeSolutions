@@ -14,24 +14,10 @@ public:
         
         int size = freq.size();
         vector<pair<int, int>> sol;
-        for(auto x:set){
-            sol.push_back({freq[x],x});
-            cout<<x<<" , "<<freq[x]<<endl;
-        }
+        for(auto x:set) sol.push_back({freq[x],x});
         sort(sol.rbegin(), sol.rend());
-
-        for(auto x:sol){
-            cout<<x.first<<" , "<<x.second<<endl;
-        }
-        if(k == 1){
-            ans.push_back(sol[0].second);
-        }else{
-            for(int i = 0 ; i < k  ; i++){
-                ans.push_back(sol[i].second);
-            }
-        }
-        
-        //cout<<freq.size()<<endl;
+        for(int i = 0 ; i < k  ; i++)
+            ans.push_back(sol[i].second);
         return ans;
     }
 };
