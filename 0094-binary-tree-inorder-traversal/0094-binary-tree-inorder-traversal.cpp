@@ -11,32 +11,16 @@
  */
 class Solution {
 public:
+    vector<int> sol;
+    void helper(TreeNode* root){
+        if(root == NULL)
+            return ;
+        if(root -> left) helper(root -> left);
+        sol.push_back(root -> val);
+        if(root -> right) helper(root -> right);
+    }
     vector<int> inorderTraversal(TreeNode* root) {
-        //Morris Inorder Traversal => using threaded binary tree
-        vector<int> inorder;
-        TreeNode* curr = root;
-        while(curr != NULL){
-            if(curr -> left == NULL){
-                inorder.push_back(curr -> val);
-                curr = curr -> right;
-            }else{
-                TreeNode* prev = curr -> left;
-                // find the right most guy
-                while(prev -> right != NULL && prev -> right != curr){
-                    prev = prev -> right;
-                }
-                // if threaded connection doesnt already exist
-                if(prev -> right == NULL){
-                    prev -> right = curr;
-                    curr = curr -> left;
-                }//if threded connection already exist means we travessed the left part then remove connection
-                else{
-                    inorder.push_back(curr -> val);
-                    prev -> right = NULL;
-                    curr = curr -> right;
-                }
-            }
-        }
-        return inorder;
+        helper(root);
+        return sol;
     }
 };
