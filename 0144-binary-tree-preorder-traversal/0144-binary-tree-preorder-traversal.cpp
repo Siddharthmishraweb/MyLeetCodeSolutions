@@ -11,29 +11,17 @@
  */
 class Solution {
 public:
+    vector<int> sol;
+    void helper(TreeNode* root){
+        if(root == NULL)
+            return;
+        sol.push_back(root -> val);
+        helper(root -> left);
+        helper(root -> right);
+        
+    }
     vector<int> preorderTraversal(TreeNode* root) {
-        // Preorder traversal using morris traversal
-        vector<int> preorder;
-        TreeNode* curr = root;
-        while(curr != NULL){
-            if(curr -> left == NULL){
-                preorder.push_back(curr -> val);
-                curr = curr -> right;
-            }else{
-                TreeNode* prev = curr -> left;
-                while(prev -> right != NULL && prev -> right != curr){
-                    prev =prev -> right;
-                }
-                if(prev -> right == NULL){
-                    prev -> right = curr;
-                    preorder.push_back(curr-> val);
-                    curr = curr -> left;
-                }else{
-                    prev -> right = NULL;
-                    curr = curr -> right;
-                }
-            }
-        }
-        return preorder;
+        helper(root);
+        return sol;
     }
 };
