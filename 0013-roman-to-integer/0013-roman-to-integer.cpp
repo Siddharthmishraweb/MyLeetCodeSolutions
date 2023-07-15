@@ -1,41 +1,59 @@
 class Solution {
 public:
     int romanToInt(string s) {
-        unordered_map<string, int> symBol;
-        symBol["I"] = 1;
-        symBol["V"] = 5;
-        symBol["X"] = 10;
-        symBol["L"] = 50;
-        symBol["C"] = 100;
-        symBol["D"] = 500;
-        symBol["M"] = 1000;
-        if(s.size() == 1){
-            string newStr = "";
-            newStr += s[0];
-            return symBol[newStr];
-        }
-        int sumAns = 0;
-        int index = 0;
-        for(int i = 0 ; i < s.length() ; i++){
-            if(i + 1 < s.length()){
-                string ith = "",ith1 = "";
-                ith += s[i];
-                ith1 += s[i+1];
-                int a = symBol[ith];
-                int b = symBol[ith1];
-                if(a < b) a =  -1 * a;
-                sumAns += a;
-                index = i;
+        unordered_map<string, int> map;
+        map["I"] = 1;
+        map["IV"] = 4;
+        map["V"] = 5;
+        map["IX"] = 9;
+        map["X"] = 10;
+        map["XL"] = 40;
+        map["L"] = 50;
+        map["XC"] = 90;
+        map["C"] = 100;
+        map["CD"] = 400;
+        map["D"] = 500;
+        map["CM"] = 900;
+        map["M"] = 1000;
+        
+        int sum = 0;
+       
+        for(int i = 0 ; i < s.size() ; i++){
+             string ans = "";
+            ans += s[i];
+            if(s[i] == 'I'){
+                if(i+1 < s.length() && s[i+1] == 'V'){
+                    ans += "V";
+                    i++;
+                }
+                if(i+1 < s.length() && s[i+1] == 'X'){
+                    ans += "X";
+                    i++;
+                }
             }
+            if(s[i] == 'X'){
+                if(i+1 < s.length() && s[i+1] == 'L'){
+                    ans += "L";
+                    i++;
+                }
+                if(i+1 < s.length() && s[i+1] == 'C'){
+                    ans += "C";
+                    i++;
+                }
+            }
+            if(s[i] == 'C'){
+                if(i+1 < s.length() && s[i+1] == 'D'){
+                    ans += "D";
+                    i++;
+                }
+                if(i+1 < s.length() && s[i+1] == 'M'){
+                    ans += "M";
+                    i++;
+                }
+            }
+            sum += map[ans];
+            ans = "";
         }
-        if(index < s.length()-1){
-            index++;
-            string newStr = "";
-            newStr += s[index];
-            sumAns += symBol[newStr];
-        }
-            
-        cout<<index;
-        return sumAns;
+        return sum;
     }
 };
