@@ -10,7 +10,16 @@
  */
 class Solution {
 public:
+    int length(ListNode* head){
+        int cnt = 0;
+        while(head != NULL){
+            cnt++;
+            head = head -> next;
+        }
+        return cnt;
+    }
     ListNode* reverseLL(ListNode* head){
+        int len = length(head);
         if(head == NULL || head -> next == NULL) return head;
         ListNode* current = head;
         ListNode* prev = NULL;
@@ -43,7 +52,6 @@ public:
             reverseHead = reverseHead -> next;
             head = head -> next;
         }
-        
         return true;
     }
 };
