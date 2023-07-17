@@ -18,39 +18,37 @@ public:
         }
         return cnt;
     }
-    ListNode* reverseLL(ListNode* head){
-        int len = length(head);
-        if(head == NULL || head -> next == NULL) return head;
+    ListNode* reverseLL(ListNode* head) {
         ListNode* current = head;
-        ListNode* prev = NULL;
-        while(current != NULL){
-            ListNode* temp = current -> next;
-            current -> next = prev;
+        ListNode* prev = nullptr;
+        while (current != nullptr) {
+            ListNode* temp = current->next;
+            current->next = prev;
             prev = current;
             current = temp;
         }
         return prev;
     }
+
     bool isPalindrome(ListNode* head) {
+        int len = length(head);
         ListNode* newHead = new ListNode(head -> val);
         ListNode* temp = head;
-        int cnt = 0;
-        ListNode* prev = head;
-        while(temp != NULL && temp -> next != NULL){
-            ListNode* newNode = new ListNode(temp -> next -> val);
-            if(cnt == 0)
-              newHead -> next = newNode;
-            else
-                prev -> next = newNode;
-            cnt++;
-            prev = newNode;
-            temp = temp -> next;
+        ListNode* tempo = head;
+        int count = 0;
+        while(tempo != NULL && count != len/2){
+            tempo = tempo -> next;
+            count++;
         }
-        ListNode* reverseHead = reverseLL(newHead);
-        while(reverseHead != NULL){
-            if(reverseHead -> val != head -> val) return false;
-            reverseHead = reverseHead -> next;
+
+        ListNode* newHeadd = reverseLL(tempo);
+        ListNode* gg = newHeadd;
+        cout<<"ss"<<endl;;
+        while(head != NULL && newHeadd != NULL){
+            cout<<head -> val<<" , "<<newHeadd -> val <<endl;
+            if(head -> val != newHeadd->val) return false;
             head = head -> next;
+            newHeadd = newHeadd -> next;
         }
         return true;
     }
