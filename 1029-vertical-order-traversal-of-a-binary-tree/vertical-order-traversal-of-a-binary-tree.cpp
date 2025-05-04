@@ -1,7 +1,6 @@
 class Solution {
   public:
    vector<pair<int,pair<int,int >>> verticalMap;
-   vector<TreeNode*> visited;
 
   vector<pair<int,pair<int,int>>> horizontalDepth(TreeNode * root, int hD, int depth) {
     if (root == NULL) return verticalMap;
