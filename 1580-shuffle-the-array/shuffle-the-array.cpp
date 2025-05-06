@@ -9,7 +9,6 @@ public:
         for(int i = n - 1 ; i >= 0 ; i--){
           int x = nums[i] % 10000;
           int y = floor(nums[i] / 10000);
-          cout<<"x: "<< x<<" y: "<<y <<endl;
           nums[2 * i] = x;
           nums [2*i + 1] = y;
         }
