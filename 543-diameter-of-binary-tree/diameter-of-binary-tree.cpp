@@ -11,28 +11,18 @@
  */
 class Solution {
 public:
+    int maxD = INT_MIN;
     int height(TreeNode* root){
         if(!root) return 0;
-        return 1+ max(height(root -> left), height(root -> right));
+        int left = height(root -> left);
+        int right = height(root -> right);
+        maxD = max(maxD, left + right);
+        return 1+ max(left, right);
     }
-    int maxi = INT_MIN;
-    int diameter(TreeNode* root){
-        int leftHeight = 0;
-        int rightHeight = 0;
-        if(root -> left){
-            leftHeight = height(root -> left);
-        }
-        if(root -> right){
-            rightHeight = height(root -> right);
-        }
-        // cout << "leftHeight: "<<leftHeight<< " ,rightHeight: "<<rightHeight<<endl;
-        maxi = max(maxi, leftHeight + rightHeight);
-        if(root -> left) diameter(root -> left);
-        if(root -> right) diameter(root -> right);
-        return maxi;
-    }
+
     int diameterOfBinaryTree(TreeNode* root) {
         if(!root) return 0;
-        return diameter(root);
+        height(root);
+        return maxD;
     }
 };
