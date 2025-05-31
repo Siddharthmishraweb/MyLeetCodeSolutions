@@ -11,8 +11,25 @@
  */
 class Solution {
 public:
-    int maxDepth(TreeNode* root) {
+    int levelOrderTraversal(TreeNode* root){
         if(!root) return 0;
-        return 1 + max(maxDepth(root -> left), maxDepth(root -> right));
+        queue<TreeNode*> pendingNodes;
+        pendingNodes.push(root);
+        int level = 0;
+        while(!pendingNodes.empty()){
+            level++;
+            int size = pendingNodes.size();
+            for(int i = 0 ; i < size; i++){
+                TreeNode* front = pendingNodes.front();
+                pendingNodes.pop();
+                if(front -> left) pendingNodes.push(front -> left);
+                if(front -> right) pendingNodes.push(front -> right);
+            }
+
+        }
+        return level;
+    }
+    int maxDepth(TreeNode* root) {
+        return levelOrderTraversal(root);
     }
 };
