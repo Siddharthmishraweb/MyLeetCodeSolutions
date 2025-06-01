@@ -12,22 +12,16 @@
 class Solution {
 public:
     bool isSameTree(TreeNode* p, TreeNode* q) {
-        // iterative solution
-        // 2 * i + 1
-        vector<int> firstAns(1000, -1);
-        vector<int> secondAns(1000, -1);
-
-        queue<pair<TreeNode* , pair<TreeNode*, pair<int, int>>>>pendingNodes;
-        pendingNodes.push({p, {q, {0, 0}}});
+        queue<pair<TreeNode* , TreeNode*>>pendingNodes;
+        pendingNodes.push({p, q});
         while(!pendingNodes.empty()){
             int size = pendingNodes.size();
                 auto front = pendingNodes.front();
                 pendingNodes.pop();
-                int i_index = front.second.second.first;
-                int j_index = front.second.second.second;
+
 
                 TreeNode* p_front = front.first;
-                TreeNode* q_front = front.second.first;
+                TreeNode* q_front = front.second;
 
                 if((p_front == NULL && q_front != NULL) || (p_front != NULL && q_front == NULL)) return false;
 
@@ -41,17 +35,13 @@ public:
 
 
                 // if(p_front -> left && q_front -> left)
-                 pendingNodes.push({p_front -> left, {q_front -> left, {2 * i_index + 1, ((2 * j_index) + 1)}}});
+                 pendingNodes.push({p_front -> left, q_front -> left});
 
                 // if(p_front -> right && q_front -> right) 
-                pendingNodes.push({p_front -> right, {q_front -> right, {2 * i_index + 2, 2 * j_index + 2}}});
+                pendingNodes.push({p_front -> right, q_front -> right});
             }
 
 
-        for(int i = 0 ; i < firstAns.size(); i++){
-            cout << firstAns[i] <<" , "<< secondAns[i] <<endl;
-            if(firstAns[i] != secondAns[i]) return false;
-        }
         return true;
     }
 };
