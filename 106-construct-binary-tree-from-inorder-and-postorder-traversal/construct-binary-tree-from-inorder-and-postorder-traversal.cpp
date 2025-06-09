@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    TreeNode* _buildTree(vector<int>& postOrder, int inStart, int inEnd, int postStart, int postEnd, map<int, int>& inOrderMap){
+    TreeNode* _buildTree(vector<int>& postOrder, int inStart, int inEnd, int postStart, int postEnd, unordered_map <int, int>& inOrderMap){
         if(inStart > inEnd || postStart > postEnd) return NULL;
         TreeNode* root = new TreeNode(postOrder[postEnd]);
         int indexToMove = inOrderMap[root -> val]; // index of root
@@ -22,7 +22,7 @@ public:
 
     }
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
-        map<int, int> inOrderMap;
+        unordered_map <int, int> inOrderMap;
         for(int i = 0 ; i < inorder.size(); i++) inOrderMap[inorder[i]] = i;
         return _buildTree( postorder, 0, inorder.size() - 1, 0, postorder.size() - 1, inOrderMap);
     }
