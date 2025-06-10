@@ -9,6 +9,7 @@ public:
         }
 
         for(auto a: charArray){
+            if(a == 0) continue;
             if(a % 2 == 0 && a != 0){
                 cout << a<<endl;
                 minEven = min(minEven, a);
@@ -16,7 +17,6 @@ public:
                 maxOdd = max(maxOdd, a);
             }
         }
-        cout << "maxOdd: "<<maxOdd<<" ,"<<minEven<<endl;
         return maxOdd - minEven;
     }
 };
