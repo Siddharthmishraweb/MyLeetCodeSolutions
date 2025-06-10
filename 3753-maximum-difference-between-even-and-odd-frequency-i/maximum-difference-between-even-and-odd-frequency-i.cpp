@@ -1,15 +1,22 @@
 class Solution {
 public:
     int maxDifference(string s) {
-        unordered_map<char, int> freq;
+        int charArray[26];
+        int maxOdd = INT_MIN;
+        int minEven = INT_MAX;
         for(auto a: s){
-            freq[a]++;
+            charArray[a - 'a']++;
         }
-        int maxOdd = INT_MIN, minEven=INT_MAX;
-        for(auto a: freq){
-            if(a.second%2==0) minEven = min(minEven, a.second);
-            else maxOdd = max(maxOdd, a.second);
+
+        for(auto a: charArray){
+            if(a % 2 == 0 && a != 0){
+                cout << a<<endl;
+                minEven = min(minEven, a);
+            }else if(a % 2 != 0 && a != 0){
+                maxOdd = max(maxOdd, a);
+            }
         }
+        cout << "maxOdd: "<<maxOdd<<" ,"<<minEven<<endl;
         return maxOdd - minEven;
     }
 };
