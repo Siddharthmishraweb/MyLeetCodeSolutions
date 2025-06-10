@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    bool helper(TreeNode* root1, TreeNode* root2){
+    bool helper(TreeNode*& root1, TreeNode*& root2){
         if((root1 == NULL && root2 != NULL) || (root1 != NULL && root2 == NULL)) return false;
         if(root1 == NULL && root2 == NULL) return true;
         cout<<"root1 -> val:: "<<root1 -> val <<" , "<<root2->val<<endl;
