@@ -22,9 +22,6 @@ public:
     }
     bool isSymmetric(TreeNode* root) {
         if(!root) return true;
-        if(root -> left && root -> right && root -> left -> val != root -> right->val) return false;
-        if(root -> left == NULL && root -> right != NULL || (root -> left != NULL && root -> right == NULL)) return false;
-        
         return helper(root -> left, root -> right);
     }
 };
